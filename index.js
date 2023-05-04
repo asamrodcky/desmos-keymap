@@ -7,7 +7,7 @@ var elt = document.getElementById('calculator');
             "trace": false,
             "border": true,
             "lockViewport": true,
-            "expressions": false,
+            "expressions": true,
             "projectorMode": true,
             "settingsMenu": false,
             "showGrid": true
