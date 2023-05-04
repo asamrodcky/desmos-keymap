@@ -7,7 +7,7 @@ var elt = document.getElementById('calculator');
             "trace": false,
             "border": true,
             "lockViewport": true,
-            "expressions": true,
+            "expressions": false,
             "projectorMode": true,
             "settingsMenu": false,
             "showGrid": true
@@ -31,6 +31,27 @@ var elt = document.getElementById('calculator');
             })
         initialStateCall()
 
+        var setGraph = document.getElementById('submitButton').onclick = ()=>{
+            event.preventDefault();
+            let desmosURL = document.getElementById('desmosURL').value;
+
+            initialStateURL = `https://saved-work.desmos.com/calc-states/production/${desmosURL}`
+            initialStateCall = async () => await fetch(initialStateURL)
+                .then( (response) => response.json())
+                .then( (responseJson) => {
+                initialState = responseJson
+                console.log("setting calc state!")
+                calculator.setState(initialState)
+                })
+            initialStateCall()
+        }
+
+        var clearAction = document.getElementById('setBlank').onclick = ()=>{
+            event.preventDefault();
+            calculator.setBlank();
+            console.log("hi im Paul")
+        }
+
         // Add event listener on keydown
         document.addEventListener('keydown', (event) => {
         var letter = event.key;
@@ -42,32 +63,4 @@ var elt = document.getElementById('calculator');
             "id": 'mostRecentPress',
             "latex": `m_{ostRecentPress}=${code}`,
         })
-
-    //     switch (letter) {
-    //     case "d":
-    //     calculator.setExpression({
-    //             "id": 'mostRecentPress',
-    //             "latex": 'm_{ostRecentPress}=1',
-    //         })
-    //         break;
-    //     case "s":
-    //     calculator.setExpression({
-    //             "id": 'mostRecentPress',
-    //             "latex": 'm_{ostRecentPress}=2',
-    //         })
-    //         break;
-    //     case "a":
-    //     calculator.setExpression({
-    //             "id": 'mostRecentPress',
-    //             "latex": 'm_{ostRecentPress}=3',
-    //         })
-    //         break;
-    //     case "w":
-    //     calculator.setExpression({
-    //             "id": 'mostRecentPress',
-    //             "latex": 'm_{ostRecentPress}=4',
-    //         })
-    //         break;
-    // }
-
         }, false);
