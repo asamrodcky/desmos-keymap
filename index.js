@@ -1,6 +1,6 @@
 var elt = document.getElementById('calculator');
-var calculator = Desmos.GraphingCalculator(elt);
-calculator.updateSettings({
+var calc = Desmos.GraphingCalculator(elt);
+calc.updateSettings({
     "keypad" : false,
     "pasteGraphLink" : true,
     "zoomButtons": false,
@@ -27,9 +27,9 @@ const isValidUrl = urlString =>{
 
 const toggleExpressionList = $('#toggleExpression').on('click',()=>{
     event.preventDefault();
-    boolExp = calculator.settings.expressions;
+    boolExp = calc.settings.expressions;
 
-    calculator.updateSettings({
+    calc.updateSettings({
         "expressions": !boolExp,
     })
 });
@@ -53,10 +53,10 @@ const setGraph = $('#submitButton').on('click',()=>{
         .then( (responseJson) => {
         initialState = responseJson
         console.log("setting calc state!")
-        calculator.setState(initialState)
+        calc.setState(initialState)
         })
         .then(()=>{
-            calculator.setExpression({
+            calc.setExpression({
                 "id": 'mostRecentPress',
                 "latex": 'm_{ostRecentPress}=-1',
             })
@@ -68,7 +68,7 @@ const setGraph = $('#submitButton').on('click',()=>{
 
 const clearAction = $('#setBlank').on('click',()=>{
     event.preventDefault();
-    calculator.setBlank();
+    calc.setBlank();
     $('#desmosURL').val("");
 });
 
@@ -77,7 +77,7 @@ document.addEventListener('keydown', (event) => {
 let letter = event.key;
 let code = event.which;
 
-calculator.setExpression({
+calc.setExpression({
     "id": 'mostRecentPress',
     "latex": `m_{ostRecentPress}=${code}`,
 })
