@@ -23,9 +23,18 @@ const isValidUrl = urlString =>{
     } else {
       return true;
     }
-  } 
+};
 
-var setGraph = document.getElementById('submitButton').onclick = ()=>{
+const toggleExpressionList = $('#toggleExpression').on('click',()=>{
+    event.preventDefault();
+    boolExp = calculator.settings.expressions;
+
+    calculator.updateSettings({
+        "expressions": !boolExp,
+    })
+});
+
+const setGraph = $('#submitButton').on('click',()=>{
     event.preventDefault();
     let inputFieldValue = $('#desmosURL').val();
     let desmosURL = '';
@@ -55,18 +64,18 @@ var setGraph = document.getElementById('submitButton').onclick = ()=>{
     initialStateCall();
 
     $('#desmosURL').val("");
-}
+});
 
-var clearAction = document.getElementById('setBlank').onclick = ()=>{
+const clearAction = $('#setBlank').on('click',()=>{
     event.preventDefault();
     calculator.setBlank();
     $('#desmosURL').val("");
-}
+});
 
 // Add event listener on keydown
 document.addEventListener('keydown', (event) => {
-var letter = event.key;
-var code = event.which;
+let letter = event.key;
+let code = event.which;
 
 calculator.setExpression({
     "id": 'mostRecentPress',
