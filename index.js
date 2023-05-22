@@ -7,11 +7,20 @@ calc.updateSettings({
     "trace": false,
     "border": true,
     "lockViewport": true,
-    "expressions": true,
+    "expressions": false,
     "projectorMode": true,
     "settingsMenu": false,
     "showGrid": true
 });
+
+const setSquareBounds = ()=>{
+    calc.setMathBounds({
+        left: -10,
+        right: 10,
+        bottom: -10,
+        top: 10
+    });
+}
 
 const isValidUrl = urlString =>{
     var inputElement = document.createElement('input');
@@ -66,9 +75,56 @@ const setGraph = $('#submitButton').on('click',()=>{
     $('#desmosURL').val("");
 });
 
+const wasdExample = $('#wasdExample').on('click',()=>{
+    event.preventDefault();
+    let desmosURL = 'hd1jx9iru2';
+    initialStateURL = `https://saved-work.desmos.com/calc-states/production/${desmosURL}`
+    initialStateCall = async () => await fetch(initialStateURL)
+        .then( (response) => response.json())
+        .then( (responseJson) => {
+        initialState = responseJson
+        console.log("setting calc state!")
+        calc.setState(initialState)
+        })
+        .then(()=>{
+            calc.setExpression({
+                "id": 'mostRecentPress',
+                "latex": 'm_{ostRecentPress}=-1',
+            })
+        })
+    initialStateCall();
+    setSquareBounds();
+
+    $('#desmosURL').val("");
+});
+
+const dinoExample = $('#dinoExample').on('click',()=>{
+    event.preventDefault();
+    let desmosURL = 'f1zrxsdnmt';
+    initialStateURL = `https://saved-work.desmos.com/calc-states/production/${desmosURL}`
+    initialStateCall = async () => await fetch(initialStateURL)
+        .then( (response) => response.json())
+        .then( (responseJson) => {
+        initialState = responseJson
+        console.log("setting calc state!")
+        calc.setState(initialState)
+        })
+        .then(()=>{
+            calc.setExpression({
+                "id": 'mostRecentPress',
+                "latex": 'm_{ostRecentPress}=-1',
+            })
+        })
+    initialStateCall();
+    setSquareBounds();
+
+    $('#desmosURL').val("");
+});
+
 const clearAction = $('#setBlank').on('click',()=>{
     event.preventDefault();
     calc.setBlank();
+    setSquareBounds();
     $('#desmosURL').val("");
 });
 
