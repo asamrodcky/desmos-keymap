@@ -37,10 +37,27 @@
     </div>
   </nav>
   <div class="container text-center">
-    <div class="row justify-content-start">
-      <div class="col-8" id="calculator" style="width: 800px; height: 800px;"></div>
-      <div class="col-4">
-        One of three columns
+    <div class="d-flex flex-row">
+      <div class="col-8 overflow-x-visible" id="calculator" style="width: 800px; height: 800px;"></div>
+      <div class="col-1"></div>
+      <div class="col-3">
+        <div class="row justify-content-start">
+          <div class="col m-4">
+            This app, powered by the Desmos API and Bootstrap, captures the 
+            <a href="https://theasciicode.com.ar/">ASCII</a> codes  of the keyboard strokes
+            and injects those values into the Graphing Calculator state present on the screen. 
+            Users can build Desmos graphs that incorporate these ASCII values and test them here.
+            <br><br>Click on some 'Examples' dropdown at the top of the screen to view some preset examples.
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col" id="graphDescription"></div>
+        </div>
+        <div class="row m-4">
+          <div class="col">
+            Key selected:<br><span id="keySelected"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -96,6 +96,8 @@ const wasdExample = $('#wasdExample').on('click',()=>{
     setSquareBounds();
 
     $('#desmosURL').val("");
+
+    $('#graphDescription').text("This is a basic example of moving a point using the keys WASD.")
 });
 
 const dinoExample = $('#dinoExample').on('click',()=>{
@@ -119,6 +121,8 @@ const dinoExample = $('#dinoExample').on('click',()=>{
     setSquareBounds();
 
     $('#desmosURL').val("");
+
+    $('#graphDescription').text("This is a more fun example of the dinosaur scroll game. Click spacebar to jump.")
 });
 
 const clearAction = $('#setBlank').on('click',()=>{
@@ -126,15 +130,38 @@ const clearAction = $('#setBlank').on('click',()=>{
     calc.setBlank();
     setSquareBounds();
     $('#desmosURL').val("");
+    $('#graphDescription').empty()
 });
 
 // Add event listener on keydown
 document.addEventListener('keydown', (event) => {
+event.preventDefault();
 let letter = event.key;
 let code = event.which;
 
 calc.setExpression({
     "id": 'mostRecentPress',
     "latex": `m_{ostRecentPress}=${code}`,
-})
+});
+
+if(code == 32){
+    letter = "space"
+}
+
+$('#keySelected').text(letter.toUpperCase());
+
+}, false);
+
+// Add event listener on keyup
+document.addEventListener('keyup', (event) => {
+let letter = event.key;
+let code = event.which;
+
+calc.setExpression({
+    "id": 'mostRecentPress',
+    "latex": `m_{ostRecentPress}=0`,
+});
+
+$('#keySelected').text("");
+
 }, false);
