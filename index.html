@@ -29,8 +29,14 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2"  id="desmosURL" type="search" placeholder="Desmos URL" aria-label="Search">
-          <button class="btn btn-outline-success me-2" id="submitButton" type="submit">Submit</button>
+          <input class="form-control me-2"  id="desmosURL" type="search" placeholder="Desmos URL" 
+          aria-label="Search" data-bs-toggle="tooltip" data-bs-placement="top"
+          data-bs-custom-class="custom-tooltip"
+          data-bs-title="Place your Desmos Calculator link here. This will accept the full URL 'https://www.desmos.com/calculator/{uniqueID}'
+          or the unique ID associated with your Desmos graph." >
+          <button class="btn btn-outline-success me-2" id="submitButton" type="submit">
+            Submit
+          </button>
           <button class="btn btn-outline-danger" id="setBlank" type="submit">Clear</button>
         </form>
       </div>
