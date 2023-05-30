@@ -133,38 +133,71 @@ const clearAction = $('#setBlank').on('click',()=>{
     $('#graphDescription').empty()
 });
 
+
+const inputFocus = $('#desmosURL').on('focus',()=>{
+
+})
+
 // Add event listener on keydown
-document.addEventListener('keydown', (event) => {
-event.preventDefault();
-let letter = event.key;
-let code = event.which;
+// const keyDown = document.addEventListener('keydown', (event) => {
+//     event.preventDefault();
+//     let letter = event.key;
+//     let code = event.which;
 
-calc.setExpression({
-    "id": 'mostRecentPress',
-    "latex": `m_{ostRecentPress}=${code}`,
-});
+//     calc.setExpression({
+//         "id": 'mostRecentPress',
+//         "latex": `m_{ostRecentPress}=${code}`,
+//     });
 
-if(code == 32){
-    letter = "space"
-}
+//     if(code == 32){
+//         letter = "space"
+//     }
 
-$('#keySelected').text(letter.toUpperCase());
+//     $('#keySelected').text(letter.toUpperCase());
 
-}, false);
+// }, false);
 
 // Add event listener on keyup
-document.addEventListener('keyup', (event) => {
-let letter = event.key;
-let code = event.which;
+// const keyUp = document.addEventListener('keyup', (event) => {
+//     let letter = event.key;
+//     let code = event.which;
 
-calc.setExpression({
-    "id": 'mostRecentPress',
-    "latex": `m_{ostRecentPress}=0`,
+//     calc.setExpression({
+//         "id": 'mostRecentPress',
+//         "latex": `m_{ostRecentPress}=0`,
+//     });
+
+//     $('#keySelected').text("");
+
+// }, false);
+
+$(document).delegate(':not(input)', 'keydown', function(event) {
+    let letter = event.key;
+    let code = event.which;
+
+    calc.setExpression({
+        "id": 'mostRecentPress',
+        "latex": `m_{ostRecentPress}=${code}`,
+    });
+
+    if(code == 32){
+        letter = "space"
+    }
+
+    $('#keySelected').text(letter.toUpperCase());
 });
 
-$('#keySelected').text("");
+$(document).delegate(':not(input)', 'keyup', function(event) {
+    let letter = event.key;
+    let code = event.which;
 
-}, false);
+    calc.setExpression({
+        "id": 'mostRecentPress',
+        "latex": `m_{ostRecentPress}=0`,
+    });
+
+    $('#keySelected').text("");
+});
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
