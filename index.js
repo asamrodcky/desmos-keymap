@@ -133,44 +133,6 @@ const clearAction = $('#setBlank').on('click',()=>{
     $('#graphDescription').empty()
 });
 
-
-const inputFocus = $('#desmosURL').on('focus',()=>{
-
-})
-
-// Add event listener on keydown
-// const keyDown = document.addEventListener('keydown', (event) => {
-//     event.preventDefault();
-//     let letter = event.key;
-//     let code = event.which;
-
-//     calc.setExpression({
-//         "id": 'mostRecentPress',
-//         "latex": `m_{ostRecentPress}=${code}`,
-//     });
-
-//     if(code == 32){
-//         letter = "space"
-//     }
-
-//     $('#keySelected').text(letter.toUpperCase());
-
-// }, false);
-
-// Add event listener on keyup
-// const keyUp = document.addEventListener('keyup', (event) => {
-//     let letter = event.key;
-//     let code = event.which;
-
-//     calc.setExpression({
-//         "id": 'mostRecentPress',
-//         "latex": `m_{ostRecentPress}=0`,
-//     });
-
-//     $('#keySelected').text("");
-
-// }, false);
-
 $(document).delegate(':not(input)', 'keydown', function(event) {
     let letter = event.key;
     let code = event.which;
